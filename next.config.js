@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const { MODE } = process.env;
 
-module.exports = nextConfig
+const nextConfig = {
+  output: MODE || undefined,
+};
+
+module.exports = nextConfig;

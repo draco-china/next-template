@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans as FontSans } from 'next/font/google';
 
-export const fontSans = Inter({
+const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 });
