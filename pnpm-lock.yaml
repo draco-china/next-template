@@ -117,13 +117,13 @@ dependencies:
     specifier: ^0.2.1
     version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
   react:
-    specifier: ^18
+    specifier: ^18.2.0
     version: 18.2.0
   react-day-picker:
     specifier: ^8.10.0
     version: 8.10.0(date-fns@3.2.0)(react@18.2.0)
   react-dom:
-    specifier: ^18
+    specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-hook-form:
     specifier: ^7.49.3
@@ -149,19 +149,19 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20
+    specifier: ^20.11.5
     version: 20.11.5
   '@types/react':
-    specifier: ^18
+    specifier: ^18.2.48
     version: 18.2.48
   '@types/react-dom':
-    specifier: ^18
+    specifier: ^18.2.18
     version: 18.2.18
   autoprefixer:
-    specifier: ^10.0.1
+    specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.33)
   eslint:
-    specifier: ^8
+    specifier: ^8.56.0
     version: 8.56.0
   eslint-config-next:
     specifier: 14.0.4
@@ -170,25 +170,25 @@ devDependencies:
     specifier: ^9.1.0
     version: 9.1.0(eslint@8.56.0)
   eslint-plugin-formatjs:
-    specifier: ^4.11.3
+    specifier: ^4.12.1
     version: 4.12.1(eslint@8.56.0)
   eslint-plugin-tailwindcss:
-    specifier: ^3.13.1
+    specifier: ^3.14.0
     version: 3.14.0(tailwindcss@3.4.1)
   postcss:
-    specifier: ^8
+    specifier: ^8.4.33
     version: 8.4.33
   prettier:
-    specifier: ^3.1.1
+    specifier: ^3.2.4
     version: 3.2.4
   prettier-plugin-organize-imports:
     specifier: ^3.2.4
     version: 3.2.4(prettier@3.2.4)(typescript@5.3.3)
   prettier-plugin-packagejson:
-    specifier: ^2.4.8
+    specifier: ^2.4.9
     version: 2.4.9(prettier@3.2.4)
   prettier-plugin-tailwindcss:
-    specifier: ^0.5.10
+    specifier: ^0.5.11
     version: 0.5.11(prettier-plugin-organize-imports@3.2.4)(prettier@3.2.4)
   stylelint:
     specifier: ^16.1.0
@@ -200,10 +200,10 @@ devDependencies:
     specifier: ^0.0.7
     version: 0.0.7(stylelint@16.1.0)(tailwindcss@3.4.1)
   tailwindcss:
-    specifier: ^3.3.0
+    specifier: ^3.4.1
     version: 3.4.1
   typescript:
-    specifier: ^5
+    specifier: ^5.3.3
     version: 5.3.3
 
 packages:
