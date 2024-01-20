@@ -2,29 +2,41 @@
 
 import { Skeleton } from '@/components/ui/skeleton';
 import request from '@/lib/request';
-import { getBaseURL } from '@/lib/utils';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Suspense } from 'react';
 
-function Component(props: { wait: number }) {
+function IPComponent(props: { wait: number }) {
   const { data } = useSuspenseQuery({
-    queryKey: ['wait', props.wait],
+    queryKey: ['ipip'],
     queryFn: async () => {
-      const path = `/api/wait?wait=${props.wait}`;
-      const url = getBaseURL() + path;
-      const res = await request(url).then((res) => res);
-      return res.data;
+      const res = await request(`https://myip.ipip.net/json`).then(
+        (res) => res,
+      );
+      return res.data.data;
     },
   });
-  return <div>{data}</div>;
+  const Index = data.location.findIndex((item: string) => item === '');
+  return (
+    <ul className="flex gap-4">
+      <li>IP: {data.ip}</li>
+      <li>地址: {data.location.slice(0, Index).join()}</li>
+      <li>运营商: {data.location[Index + 1]}</li>
+    </ul>
+  );
 }
 
 export default function Mall() {
   return (
     <Suspense
-      fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}
+      fallback={
+        <div className="flex gap-4 *:h-6 *:w-52 *:rounded-full">
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </div>
+      }
     >
-      <Component wait={1000} />
+      <IPComponent wait={1000} />
     </Suspense>
   );
 }
