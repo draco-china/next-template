@@ -1,8 +1,12 @@
-/** @type {import('next').NextConfig} */
-const { MODE } = process.env;
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+});
 
+const { MODE } = process.env;
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   output: MODE || undefined,
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);
