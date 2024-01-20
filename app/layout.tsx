@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { Noto_Sans as FontSans } from 'next/font/google';
+import ReactQueryProvider from './providers/ReactQuery';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -26,7 +27,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );
