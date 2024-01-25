@@ -13,6 +13,7 @@
 - 国际化文件自动生成 (@lobehub/i18n-cli)
 - Capacitor (打包原生项目)
 - PWA (基于 next-pwa)
+- sitemap 生成 （build 后自动生成）
 
 ## Commands
 
