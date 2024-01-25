@@ -1,6 +1,9 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+export const isBrowser =
+  typeof window !== 'undefined' || process.env.OUTPUT === 'export';
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

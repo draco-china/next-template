@@ -6,6 +6,6 @@ import Local from './local.json';
 
 addCollection(Local);
 
-export default function Icon({ className, ...props }: IconProps) {
+export default function Icon(props: IconProps) {
   return <Iconify {...props} />;
 }

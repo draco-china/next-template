@@ -1,7 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import localForage from 'localforage';
-import { getBaseURL } from './utils';
-const isBrowser = typeof window !== 'undefined';
+import Cookies from 'js-cookie';
+import { getBaseURL, isBrowser } from './utils';
 
 const request = axios.create({
   baseURL: getBaseURL(),
@@ -10,12 +9,14 @@ const request = axios.create({
 
 request.interceptors.request.use(
   async (request: InternalAxiosRequestConfig) => {
+    let Authorization;
     if (isBrowser) {
-      let Authorization = (await localForage.getItem(
-        'Authorization',
-      )) as string;
-      if (Authorization) request.headers.Authorization = Authorization;
+      Authorization = Cookies.get('Authorization');
+    } else if (process.env.OUTPUT !== 'export') {
+      const { cookies } = await import('next/headers');
+      Authorization = cookies().get('Authorization')?.value;
     }
+    if (Authorization) request.headers.Authorization = Authorization;
     return request;
   },
   (error) => {

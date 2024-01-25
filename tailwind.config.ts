@@ -3,7 +3,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config = {
   mode: 'jit',
-  darkMode: ['class'],
+  darkMode: ['class', "[data-mode='dark']"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -14,14 +14,14 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1rem',
       screens: {
         // sm: '40rem',
         // md: '48rem',
         // lg: '64rem',
         // xl: '80rem',
         // '2xl': '96rem',
-        '2xl': '1400px',
+        // '2xl': '1400px',
       },
     },
     extend: {
