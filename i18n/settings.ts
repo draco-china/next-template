@@ -3,7 +3,29 @@ export const fallbackLng =
 export const defaultNS = 'index';
 export const languages =
   process.env.NODE_ENV === 'development'
-    ? ['zh-CN', 'en-US']
+    ? [
+        'zh-CN',
+        'cs-CZ',
+        'de-DE',
+        'en-US',
+        'es-ES',
+        'es-MX',
+        'fi-FI',
+        'fr-FR',
+        'hi-IN',
+        'hu-HU',
+        'ja-JP',
+        'ko-KR',
+        'no-NO',
+        'pl-PL',
+        'pt-BR',
+        'ro-RO',
+        'ru-RU',
+        'th-TH',
+        'tr-TR',
+        'uk-UA',
+        'vi-VN',
+      ]
     : [
         'cs-CZ',
         'de-DE',
