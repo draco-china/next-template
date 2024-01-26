@@ -68,18 +68,29 @@ jobs:
               echo 'export PATH=$PATH:/usr/local/node/bin' >> /etc/profile
               source /etc/profile
             fi
-            # 是否存在 pnpm
+
+            # 是否存在pnpm
             if [ ! -d "/usr/local/node/pnpm" ]; then
               npm install -g pnpm
             fi
+
+            # 是否存在pm2
+            if [ ! -d "/usr/local/node/pm2" ]; then
+              npm install -g pm2
+            fi
+
+            # 是否需要全局软链
+            if [ ! -d "/usr/bin/node" ]; then
+              ln -s /usr/local/node/bin/node /usr/bin/node
+              ln -s /usr/local/node/bin/npm /usr/bin/npm
+              ln -s /usr/local/node/bin/pnpm /usr/bin/pnpm
+              ln -s /usr/local/node/bin/pm2 /usr/bin/pm2
+            fi
+
             # 安装依赖
             pnpm install
             # 打包
             pnpm export && pnpm build
-            # pm2 是否存在
-            if [ ! -d "/usr/local/node/pm2" ]; then
-              npm install -g pm2
-            fi
             # pm2 删除
             pm2 delete ${{ env.container }}
             # pm2 启动

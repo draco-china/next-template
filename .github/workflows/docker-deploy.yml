@@ -59,6 +59,15 @@ jobs:
           script: |
             # 进入远程目录
             cd ${{ env.REMOTE_TARGET }}
+            # 是否已经安装 docker
+            if ! command -v docker &> /dev/null
+            then
+                # 安装 docker
+                curl -fsSL https://get.docker.com -o get-docker.sh
+                sh get-docker.sh
+            fi
+            # 停止 docker 容器
+            docker stop ${{ env.container }} || true
             # 移除历史镜像
             docker rm -f ${{ env.container }} || true
             docker rmi -f ${{ env.container }}  || true
