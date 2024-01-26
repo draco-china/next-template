@@ -1,4 +1,6 @@
+import ReactQueryProvider from '@/app/components/react-query-provide';
 import Scripts from '@/app/components/scripts';
+import ThemeProvider from '@/app/components/theme-provide';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { languages } from '@/i18n/settings';
 import { getMode, getTheme } from '@/lib/config';
@@ -6,8 +8,6 @@ import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import { dir } from 'i18next';
 import { Noto_Sans as FontSans } from 'next/font/google';
-import ReactQueryProvider from './providers/react-query';
-import { ThemeProvider } from './providers/theme';
 
 const fontSans = FontSans({
   subsets: ['latin'],
