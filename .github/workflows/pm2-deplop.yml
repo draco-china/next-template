@@ -90,7 +90,8 @@ jobs:
             # 安装依赖
             pnpm install
             # 打包
-            pnpm export && pnpm build
+            pnpm export
+            pnpm build
             # pm2 删除
             pm2 delete ${{ env.container }}
             # pm2 启动
