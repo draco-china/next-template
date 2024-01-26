@@ -1,17 +1,17 @@
 'use client';
 
-import useConfig from '@/hooks/config';
-import { cn } from '@/lib/utils';
-import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
-import Link from 'next/link';
-import Icon from '../../components/Icon';
-import { Button } from '../../components/ui/button';
-import { Label } from '../../components/ui/label';
+import Icon from '@/components/Icon';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '../../components/ui/popover';
+} from '@/components/ui/popover';
+import useConfig from '@/hooks/config';
+import { cn } from '@/lib/utils';
+import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 
 // 'zinc', 'slate', 'stone', 'gray', 'neutral', 'red', 'rose', 'orange', 'green', 'blue', 'yellow', 'violet'
 const themes = [
