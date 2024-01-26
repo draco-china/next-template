@@ -1,11 +1,13 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { languages } from '@/i18n/settings';
 import { getMode, getTheme } from '@/lib/config';
+import { setCookie } from '@/lib/cookies';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import { dir } from 'i18next';
 import { Noto_Sans as FontSans } from 'next/font/google';
 import ReactQueryProvider from './providers/react-query';
+import { ThemeProvider } from './providers/theme';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -25,6 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { lng: string };
 }) {
+  setCookie('lng', lng);
   return (
     <html
       lang={lng}
@@ -43,11 +46,11 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          {/* <ThemeProvider attribute="data-mode" defaultTheme="dark"> */}
-          <ScrollArea className="h-dvh max-h-screen w-dvw max-w-full">
-            {children}
-          </ScrollArea>
-          {/* </ThemeProvider> */}
+          <ThemeProvider attribute="data-mode" defaultTheme={getMode()}>
+            <ScrollArea className="h-dvh max-h-screen w-dvw max-w-full">
+              {children}
+            </ScrollArea>
+          </ThemeProvider>
         </ReactQueryProvider>
       </body>
     </html>

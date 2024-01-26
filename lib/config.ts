@@ -29,7 +29,11 @@ export function getLanguage() {
   if (!language) {
     let lang: string;
     if (isBrowser) {
-      lang = navigator?.language.split(',')[0];
+      try {
+        lang = navigator?.language.split(',')[0] || '';
+      } catch (e) {
+        lang = '';
+      }
     } else {
       const headers = require('next/headers').headers;
       lang = headers().get('Accept-Language')?.split(',')[0];

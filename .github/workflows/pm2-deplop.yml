@@ -1,0 +1,86 @@
+name: PM2 Deploy
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      SSH_PRIVATE_KEY:
+        description: 'SSH private key'
+        required: false
+      REMOTE_HOST:
+        description: 'Remote host to deploy to'
+        required: false
+      REMOTE_USER:
+        description: 'Remote user to deploy as'
+        required: false
+        default: 'root'
+      REMOTE_TARGET:
+        description: 'Remote target directory to deploy to'
+        required: false
+        default: '/var/www/html'
+  # push:
+  #   branches:
+  #     - main
+env:
+  # 私钥
+  SSH_PRIVATE_KEY: ${{ github.event.inputs.SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
+  # 远程主机
+  REMOTE_HOST: ${{ github.event.inputs.REMOTE_HOST || secrets.REMOTE_HOST }}
+  # 远程用户
+  REMOTE_USER: ${{ github.event.inputs.REMOTE_USER || secrets.REMOTE_USER }}
+  # 远程目录
+  REMOTE_TARGET: ${{ github.event.inputs.REMOTE_TARGET || secrets.REMOTE_TARGET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Clone SSH Deploy
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete '
+          SOURCE: './'
+          REMOTE_HOST: ${{ env.REMOTE_HOST }}
+          REMOTE_USER: ${{ env.REMOTE_USER }}
+          TARGET: ${{ env.REMOTE_TARGET }}
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        env:
+          container: next-app
+        with:
+          host: ${{ env.REMOTE_HOST }}
+          username: ${{ env.REMOTE_USER }}
+          key: ${{ env.SSH_PRIVATE_KEY }}
+          script: |
+            # 进入远程目录
+            cd ${{ env.REMOTE_TARGET }}
+            # 是否安装 node 环境 没有则安装 v18.19.0
+            if [ ! -d "/usr/local/node" ]; then
+              wget https://nodejs.org/dist/v18.19.0/node-v18.19.0-linux-x64.tar.xz
+              tar -xvf node-v18.19.0-linux-x64.tar.xz
+              mv node-v18.19.0-linux-x64 /usr/local/node
+              rm -rf node-v18.19.0-linux-x64.tar.xz
+              echo 'export PATH=$PATH:/usr/local/node/bin' >> /etc/profile
+              source /etc/profile
+            fi
+            # 是否存在 pnpm
+            if [ ! -d "/usr/local/node/pnpm" ]; then
+              npm install -g pnpm
+            fi
+            # 安装依赖
+            pnpm install
+            # 打包
+            pnpm export && pnpm build
+            # pm2 是否存在
+            if [ ! -d "/usr/local/node/pm2" ]; then
+              npm install -g pm2
+            fi
+            # pm2 删除
+            pm2 delete ${{ env.container }}
+            # pm2 启动
+            pm2 start npm --name ${{ env.container }} -- run start

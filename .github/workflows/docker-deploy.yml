@@ -1,0 +1,68 @@
+name: Docker Deploy
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      SSH_PRIVATE_KEY:
+        description: 'SSH private key'
+        required: false
+      REMOTE_HOST:
+        description: 'Remote host to deploy to'
+        required: false
+      REMOTE_USER:
+        description: 'Remote user to deploy as'
+        required: false
+        default: 'root'
+      REMOTE_TARGET:
+        description: 'Remote target directory to deploy to'
+        required: false
+        default: '/var/www/html'
+  # push:
+  #   branches:
+  #     - main
+env:
+  # 私钥
+  SSH_PRIVATE_KEY: ${{ github.event.inputs.SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
+  # 远程主机
+  REMOTE_HOST: ${{ github.event.inputs.REMOTE_HOST || secrets.REMOTE_HOST }}
+  # 远程用户
+  REMOTE_USER: ${{ github.event.inputs.REMOTE_USER || secrets.REMOTE_USER }}
+  # 远程目录
+  REMOTE_TARGET: ${{ github.event.inputs.REMOTE_TARGET || secrets.REMOTE_TARGET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Clone SSH Deploy
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete '
+          SOURCE: './'
+          REMOTE_HOST: ${{ env.REMOTE_HOST }}
+          REMOTE_USER: ${{ env.REMOTE_USER }}
+          TARGET: ${{ env.REMOTE_TARGET }}
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        env:
+          container: next-app
+        with:
+          host: ${{ env.REMOTE_HOST }}
+          username: ${{ env.REMOTE_USER }}
+          key: ${{ env.SSH_PRIVATE_KEY }}
+          script: |
+            # 进入远程目录
+            cd ${{ env.REMOTE_TARGET }}
+            # 移除历史镜像
+            docker rm -f ${{ env.container }} || true
+            docker rmi -f ${{ env.container }}  || true
+            # 构建 docker 镜像
+            docker build --no-cache -f Dockerfile -t ${{ env.container }} .
+            # 启动 docker 容器
+            docker run -d -p 3000:3000 --name ${{ env.container }} ${{ env.container }}
