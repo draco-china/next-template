@@ -4,10 +4,14 @@ import useConfig from '@/hooks/config';
 import { cn } from '@/lib/utils';
 import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import Icon from './Icon';
-import { Button } from './ui/button';
-import { Label } from './ui/label';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import Icon from '../../components/Icon';
+import { Button } from '../../components/ui/button';
+import { Label } from '../../components/ui/label';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '../../components/ui/popover';
 
 // 'zinc', 'slate', 'stone', 'gray', 'neutral', 'red', 'rose', 'orange', 'green', 'blue', 'yellow', 'violet'
 const themes = [
@@ -76,7 +80,6 @@ const themes = [
 export default function ThemeSettings() {
   const { mode, theme, language, updateMode, updateTheme, updateLanguage } =
     useConfig();
-
   return (
     <Popover>
       <PopoverTrigger asChild>
