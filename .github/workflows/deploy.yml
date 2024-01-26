@@ -3,6 +3,18 @@ name: Deploy
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+      REMOTE_HOST:
+        description: 'Remote host to deploy to'
+        required: false
+      REMOTE_USER:
+        description: 'Remote user to deploy as'
+        required: false
+        default: 'root'
+      REMOTE_TARGET:
+        description: 'Remote target directory to deploy to'
+        required: false
+        default: '/var/www/html'
   # push:
   #   branches:
   #     - main
@@ -50,6 +62,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: '-rlgoDzvc -i --delete '
           SOURCE: 'out/'
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          REMOTE_HOST: ${{ github.event.inputs.ssh || secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ github.event.inputs.ssh || secrets.REMOTE_USER }}
+          TARGET: ${{ github.event.inputs.ssh || secrets.REMOTE_TARGET }}
