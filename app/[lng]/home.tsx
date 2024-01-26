@@ -6,6 +6,7 @@ import request from '@/lib/request';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { Suspense } from 'react';
+import { toast } from 'sonner';
 
 function TranslateComponent() {
   const { lng } = useParams<{ lng: string }>();
@@ -32,7 +33,18 @@ function IPComponent() {
   });
   return (
     <ul className="flex flex-col gap-4">
-      <li>IP: {data.ip}</li>
+      <li
+        onClick={() => {
+          toast.warning('Warning');
+          toast.success('Success');
+          toast.error('Error');
+          toast.info('Info');
+          toast.loading('Loading');
+          toast.message('Message');
+        }}
+      >
+        IP: {data.ip}
+      </li>
       <li>地址: {data.address}</li>
       <TranslateComponent />
     </ul>

@@ -6,6 +6,7 @@ import {
   setMode,
   setTheme,
 } from '@/lib/config';
+import { useTheme } from 'next-themes';
 import { proxy, useSnapshot } from 'valtio';
 
 interface IStore {
@@ -50,12 +51,15 @@ export function updateLanguage(language: IStore['language']) {
 
 export default function useConfig() {
   const { mode, theme, language } = useSnapshot(store);
-
+  const { setTheme } = useTheme();
   return {
     mode,
     theme,
     language,
-    updateMode,
+    updateMode: (mode: IStore['mode']) => {
+      updateMode(mode);
+      setTheme(mode);
+    },
     updateTheme,
     updateLanguage,
   };

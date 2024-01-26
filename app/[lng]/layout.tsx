@@ -2,6 +2,7 @@ import ReactQueryProvider from '@/app/components/react-query-provide';
 import Scripts from '@/app/components/scripts';
 import ThemeProvider from '@/app/components/theme-provide';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Toaster } from '@/components/ui/sonner';
 import { languages } from '@/i18n/settings';
 import { getMode, getTheme } from '@/lib/config';
 import { cn } from '@/lib/utils';
@@ -50,6 +51,7 @@ export default function RootLayout({
             <ScrollArea className="h-dvh max-h-screen w-dvw max-w-full">
               {children}
             </ScrollArea>
+            <Toaster closeButton richColors visibleToasts={9} />
           </ThemeProvider>
         </ReactQueryProvider>
       </body>
