@@ -1,9 +1,9 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
-import { getBaseURL, isBrowser } from './utils';
+import { API_URL, isBrowser } from './utils';
 
 const request = axios.create({
-  baseURL: getBaseURL(),
+  baseURL: API_URL,
   // timeout: 10000,
 });
 

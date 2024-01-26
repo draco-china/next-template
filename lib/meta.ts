@@ -1,4 +1,6 @@
+import { languages } from '@/i18n/settings';
 import { Metadata, Viewport } from 'next';
+import { SITE_URL } from './utils';
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +29,13 @@ export const metadata: Metadata = {
     apple: {
       url: '/apple-touch-icon.png',
     },
+  },
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+    languages: Object.fromEntries(
+      languages.map((language) => [language, `/${language}`]),
+    ),
   },
   robots: {
     index: false,

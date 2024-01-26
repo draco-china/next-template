@@ -8,12 +8,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getBaseURL() {
-  // if (process.env.API_URL) {
-  //   return `https://${process.env.API_URL}`;
-  // }
-  // if (process.env.NODE_ENV === 'production') {
-  //   return 'http://localhost:3000';
-  // }
-  return 'http://localhost:3000';
-}
+export const SITE_URL = process.env.SITE_URL || 'http://localhost:3000';
+export const API_URL = process.env.API_URL || 'http://localhost:3000';
+export const ANALYTICS = {
+  baidu: process.env.BAIDU || '',
+  google: process.env.GOOGLE || '',
+  yandex: process.env.YANDEX || '',
+  facebook: process.env.FACEBOOK || '',
+};

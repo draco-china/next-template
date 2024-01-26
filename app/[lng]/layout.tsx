@@ -1,7 +1,7 @@
+import Scripts from '@/app/components/scripts';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { languages } from '@/i18n/settings';
 import { getMode, getTheme } from '@/lib/config';
-import { setCookie } from '@/lib/cookies';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import { dir } from 'i18next';
@@ -14,7 +14,7 @@ const fontSans = FontSans({
   variable: '--font-sans',
 });
 
-export { metadata, viewport } from '../../config/meta';
+export { metadata, viewport } from '@/lib/meta';
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -27,7 +27,6 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { lng: string };
 }) {
-  setCookie('lng', lng);
   return (
     <html
       lang={lng}
@@ -38,6 +37,7 @@ export default function RootLayout({
     >
       <head>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <Scripts />
       </head>
       <body
         className={cn(
