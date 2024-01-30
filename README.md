@@ -2,7 +2,7 @@
 
 基于 Next.js 集成:
 
-- Tailwind CSS
+- Tailwind CSS (支持 pxtorem) 例如 h-[80px] 自动转换为 `height: 5rem`
 - shadcn-ui
 - 支持主题颜色、主题模式切换
 - iconify (支持本地 svg 导入)
