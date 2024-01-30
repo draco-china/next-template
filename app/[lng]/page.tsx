@@ -1,5 +1,5 @@
 import Settings from '@/app/components/settings';
-import { useTranslation } from '@/i18n';
+import { getTranslation } from '@/i18n';
 import Mall from './home';
 
 export default async function Home({
@@ -7,7 +7,7 @@ export default async function Home({
 }: {
   params: { lng: string };
 }) {
-  const { t } = await useTranslation(lng, 'index');
+  const { t } = await getTranslation(lng, 'index');
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Settings />
