@@ -19,6 +19,13 @@
   - SSG
   - PM2
   - Docker
+- 其它功能（app/components/scripts.tsx）
+  - rem 自适应
+  - 生产环境防 debugger
+  - 百度统计
+  - 谷歌统计
+  - yandex 统计
+  - facebook 统计
 
 ## Commands
 
