@@ -30,7 +30,8 @@ env:
   REMOTE_USER: ${{ github.event.inputs.REMOTE_USER || secrets.REMOTE_USER }}
   # 远程目录
   REMOTE_TARGET: ${{ github.event.inputs.REMOTE_TARGET || secrets.REMOTE_TARGET }}
-
+  # 容器名称
+  container: next-app
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,16 +48,7 @@ jobs:
           REMOTE_HOST: ${{ env.REMOTE_HOST }}
           REMOTE_USER: ${{ env.REMOTE_USER }}
           TARGET: ${{ env.REMOTE_TARGET }}
-
-      - name: Deploy
-        uses: appleboy/ssh-action@master
-        env:
-          container: next-app
-        with:
-          host: ${{ env.REMOTE_HOST }}
-          username: ${{ env.REMOTE_USER }}
-          key: ${{ env.SSH_PRIVATE_KEY }}
-          script: |
+          SCRIPT_AFTER: |
             # 进入远程目录
             cd ${{ env.REMOTE_TARGET }}
             # 是否安装 node 环境 没有则安装 v18.19.0
