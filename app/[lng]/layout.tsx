@@ -1,6 +1,6 @@
-import ReactQueryProvider from '@/app/components/react-query-provide';
+import ReactQueryProvider from '@/app/components/react-query-provider';
 import Scripts from '@/app/components/scripts';
-import ThemeProvider from '@/app/components/theme-provide';
+import ThemeProvider from '@/app/components/theme-provider';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Toaster } from '@/components/ui/sonner';
 import { languages } from '@/i18n/settings';
