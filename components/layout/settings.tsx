@@ -143,7 +143,6 @@ export default function ThemeSettings() {
               <Button
                 variant={'outline'}
                 size="sm"
-                onClick={() => updateLanguage('zh-CN')}
                 className={cn(
                   language === 'zh-CN' && 'border-2 border-primary',
                 )}
@@ -154,7 +153,6 @@ export default function ThemeSettings() {
               <Button
                 variant={'outline'}
                 size="sm"
-                onClick={() => updateLanguage('en-US')}
                 className={cn(
                   language === 'en-US' && 'border-2 border-primary',
                 )}
