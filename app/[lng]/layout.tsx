@@ -1,6 +1,9 @@
-import ReactQueryProvider from '@/app/components/react-query-provider';
-import Scripts from '@/app/components/scripts';
-import ThemeProvider from '@/app/components/theme-provider';
+import {
+  LanguageProvider,
+  ReactQueryProvider,
+  Scripts,
+  ThemeProvider,
+} from '@/components/layout';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Toaster } from '@/components/ui/sonner';
 import { languages } from '@/i18n/settings';
@@ -38,7 +41,6 @@ export default function RootLayout({
     >
       <head>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <Scripts />
       </head>
       <body
         className={cn(
@@ -47,13 +49,16 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          <ThemeProvider attribute="data-mode" defaultTheme={getMode()}>
-            <ScrollArea className="h-dvh max-h-screen w-dvw max-w-full">
-              {children}
-            </ScrollArea>
-            <Toaster closeButton richColors visibleToasts={9} />
-          </ThemeProvider>
+          <LanguageProvider>
+            <ThemeProvider attribute="data-mode" defaultTheme={getMode()}>
+              <ScrollArea className="h-dvh max-h-screen w-dvw max-w-full">
+                {children}
+              </ScrollArea>
+              <Toaster closeButton richColors visibleToasts={9} />
+            </ThemeProvider>
+          </LanguageProvider>
         </ReactQueryProvider>
+        <Scripts />
       </body>
     </html>
   );

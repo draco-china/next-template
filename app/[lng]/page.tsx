@@ -1,4 +1,4 @@
-import Settings from '@/app/components/settings';
+import Settings from '@/components/layout/settings';
 import { getTranslation } from '@/i18n';
 import Mall from './home';
 
