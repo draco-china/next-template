@@ -97,18 +97,27 @@ jobs:
             then
                 bash <(curl -L -s https://mirror.ghproxy.com/https://raw.githubusercontent.com/0xJacky/nginx-ui/master/install.sh) install -r https://mirror.ghproxy.com/
             fi
-          SCRIPT_AFTER: |
-            whoami
-            ls -al
-            # 进入远程目录
-            cd ${{ env.REMOTE_TARGET }}
             # 是否已经安装 docker
             if ! command -v docker &> /dev/null
             then
                 # 安装 docker
                 curl -fsSL https://get.docker.com -o get-docker.sh
-                sh get-docker.sh
+                yes|sh get-docker.sh
             fi
+            # 是否已经安装 docker-compose
+            if ! command -v docker-compose &> /dev/null
+            then
+                # 安装 docker-compose
+                yes|curl -L "https://github.com/docker/compose/releases/download/2.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                chmod +x /usr/local/bin/docker-compose
+                ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+                docker-compose --version
+            fi
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            # 进入远程目录
+            cd ${{ env.REMOTE_TARGET }}
             # 停止 docker 容器
             docker stop ${{ env.container }} || true
             # 移除历史容器
