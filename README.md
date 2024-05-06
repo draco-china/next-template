@@ -35,7 +35,8 @@
 | android:open | Open Android project in Android Studio | 在 Android Studio 中打开 Android 项目 |
 | build | Build the Next.js project | 构建 Next.js 项目 |
 | postbuild | Generate sitemap after build | 构建后生成网站地图 |
-| deps | Update dependencies and check UI differences | 更新依赖并检查 UI 差异 |
+| deps | Update dependencies | 更新依赖 |
+| deps:diff | Check UI differences | 检查 UI 差异 |
 | dev | Start the Next.js development server | 启动 Next.js 开发服务器 |
 | export | Export the Next.js project | 导出 Next.js 项目 |
 | icon | Generate icons using Iconify | 使用 Iconify 生成图标 |
