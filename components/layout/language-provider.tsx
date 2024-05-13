@@ -1,6 +1,6 @@
 'use client';
 
-import useConfig from '@/hooks/config';
+import { useConfig } from '@/stores/config';
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 

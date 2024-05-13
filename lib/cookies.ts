@@ -17,3 +17,12 @@ export function setCookie(name: string, value: string) {
     cookies().set(name, value, { path: '/' });
   }
 }
+
+export function removeCookie(name: string) {
+  if (isBrowser) {
+    Cookies.remove(name);
+  } else {
+    const cookies = require('next/headers').cookies;
+    cookies().delete(name);
+  }
+}

@@ -8,8 +8,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import useConfig from '@/hooks/config';
 import { cn } from '@/lib/utils';
+import { useConfig } from '@/stores/config';
 import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 

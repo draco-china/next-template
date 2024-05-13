@@ -6,7 +6,8 @@ import {
   setMode,
   setTheme,
 } from '@/lib/config';
-import { proxy } from 'valtio';
+import { useTheme } from 'next-themes';
+import { proxy, useSnapshot } from 'valtio';
 
 export interface IConfig {
   mode: 'light' | 'dark';
@@ -46,4 +47,20 @@ export function updateTheme(theme: IConfig['theme']) {
 export function updateLanguage(language: IConfig['language']) {
   setLanguage(language);
   config.language = language;
+}
+
+export function useConfig() {
+  const { mode, theme, language } = useSnapshot(config);
+  const { setTheme } = useTheme();
+  return {
+    mode,
+    theme,
+    language,
+    updateMode: (mode: IConfig['mode']) => {
+      updateMode(mode);
+      setTheme(mode);
+    },
+    updateTheme,
+    updateLanguage,
+  };
 }
