@@ -4,11 +4,13 @@ import LayoutFooter from '@/layout/footer';
 import { LayoutHeader } from '@/layout/header';
 import LayoutScroll from '@/layout/scroll';
 import { ReactQueryProvider } from '@/providers';
-import { DEFAULT_SYSTEM_MODE, DEFAULT_THEME } from '@/lib/constants';
+import { DEFAULT_MODE, DEFAULT_SYSTEM_MODE, DEFAULT_THEME } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/sonner';
 import '../../../tailwind.css';
+import { cookies } from 'next/headers';
 import { BodyAnalytics, HeadAnalytics } from '@/analytics';
+import { getCookie } from '@/lib/cookies';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -21,6 +23,16 @@ export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
 }
 
+function getMode() {
+  let mode = getCookie('mode', { cookies }) || DEFAULT_MODE;
+  if (mode === 'system') mode = getCookie('systemMode', { cookies }) || DEFAULT_SYSTEM_MODE;
+  return mode;
+}
+
+function getTheme() {
+  return getCookie('theme', { cookies }) || DEFAULT_THEME;
+}
+
 export default function RootLayout({
   children,
   params: { lng },
@@ -28,14 +40,16 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { lng: string };
 }) {
+  const mode = getMode();
+  const theme = getTheme();
   return (
     <html
       lang={lng}
       dir={dir(lng)}
-      data-mode={DEFAULT_SYSTEM_MODE}
-      data-theme={DEFAULT_THEME}
+      data-mode={mode}
+      data-theme={theme}
       style={{
-        colorScheme: DEFAULT_SYSTEM_MODE,
+        colorScheme: mode,
       }}
       suppressHydrationWarning
     >
