@@ -1,0 +1,10 @@
+{
+  "deploy": "Déployer",
+  "deploy.description": "Déployez instantanément votre site Next.js sur une URL publique avec Vercel.",
+  "docs": "Documentation",
+  "docs.description": "Trouvez des informations détaillées sur les fonctionnalités et l'API de Next.js.",
+  "learn": "Apprendre",
+  "learn.description": "Apprenez Next.js dans un cours interactif avec des quiz !",
+  "templates": "Modèles",
+  "templates.description": "Découvrez et déployez des projets exemples de base de Next.js."
+}

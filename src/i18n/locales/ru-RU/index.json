@@ -1,0 +1,10 @@
+{
+  "deploy": "Развернуть",
+  "deploy.description": "Мгновенно развернуть ваш сайт Next.js на общедоступном URL-адресе с помощью Vercel.",
+  "docs": "Документация",
+  "docs.description": "Найдите подробную информацию о функциях и API Next.js.",
+  "learn": "Обучение",
+  "learn.description": "Изучайте Next.js в интерактивном курсе с викторинами!",
+  "templates": "Шаблоны",
+  "templates.description": "Откройте и развернуть типовые проекты Next.js."
+}

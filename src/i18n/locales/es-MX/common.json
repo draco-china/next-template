@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "No autorizado",
+    "403": "Prohibido",
+    "404": "No encontrado",
+    "500": "Error interno del servidor",
+    "503": "Servicio no disponible",
+    "504": "Tiempo de espera del servidor agotado",
+    "default": "Error desconocido"
+  }
+}

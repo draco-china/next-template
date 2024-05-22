@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Nieautoryzowany",
+    "403": "Zabroniony",
+    "404": "Nie znaleziono",
+    "500": "Wewnętrzny błąd serwera",
+    "503": "Usługa niedostępna",
+    "504": "Przekroczony limit czasu bramy",
+    "default": "Nieznany błąd"
+  }
+}

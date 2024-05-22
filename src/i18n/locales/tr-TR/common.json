@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Yetkisiz",
+    "403": "Yasak",
+    "404": "Bulunamadı",
+    "500": "Dahili Sunucu Hatası",
+    "503": "Servis Kullanılamıyor",
+    "504": "Ağ Geçidi Zaman Aşımı",
+    "default": "Bilinmeyen Hata"
+  }
+}

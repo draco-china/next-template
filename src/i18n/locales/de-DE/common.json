@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Nicht berechtigt",
+    "403": "Verboten",
+    "404": "Nicht gefunden",
+    "500": "Interner Serverfehler",
+    "503": "Dienst nicht verfügbar",
+    "504": "Gateway-Zeitüberschreitung",
+    "default": "Unbekannter Fehler"
+  }
+}

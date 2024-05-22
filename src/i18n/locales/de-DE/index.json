@@ -1,0 +1,10 @@
+{
+  "deploy": "Bereitstellen",
+  "deploy.description": "Stellen Sie Ihre Next.js-Website sofort über Vercel an einer öffentlichen URL bereit.",
+  "docs": "Dokumentation",
+  "docs.description": "Finden Sie ausführliche Informationen zu den Funktionen und der API von Next.js.",
+  "learn": "Lernen",
+  "learn.description": "Lernen Sie Next.js in einem interaktiven Kurs mit Tests kennen!",
+  "templates": "Vorlagen",
+  "templates.description": "Entdecken und implementieren Sie Beispiel-Boilerplate-Projekte für Next.js."
+}

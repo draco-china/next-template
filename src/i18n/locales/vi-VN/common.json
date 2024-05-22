@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Không được phép",
+    "403": "Bị cấm",
+    "404": "Không tìm thấy",
+    "500": "Lỗi máy chủ nội bộ",
+    "503": "Dịch vụ không khả dụng",
+    "504": "Thời gian chờ cổng đã hết",
+    "default": "Lỗi không xác định"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "deploy": "Triển khai",
+  "deploy.description": "Triển khai trang web Next.js của bạn lên URL công cộng ngay lập tức với Vercel.",
+  "docs": "Tài liệu",
+  "docs.description": "Tìm thông tin chi tiết về các tính năng và API của Next.js.",
+  "learn": "Học tập",
+  "learn.description": "Học về Next.js trong một khóa học tương tác với các câu đố!",
+  "templates": "Mẫu",
+  "templates.description": "Khám phá và triển khai các dự án mẫu Next.js."
+}

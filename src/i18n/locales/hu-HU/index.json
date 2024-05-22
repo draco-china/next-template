@@ -1,0 +1,10 @@
+{
+  "deploy": "Üzembe helyezés",
+  "deploy.description": "Azonnal üzembe helyezheted a Next.js oldaladat egy nyilvános URL-en a Vercel segítségével.",
+  "docs": "Dokumentáció",
+  "docs.description": "Találj alapos információt a Next.js funkciókról és API-ról.",
+  "learn": "Tanulás",
+  "learn.description": "Tanulj a Next.js-ről egy interaktív kurzuson keresztül kvízekkel!",
+  "templates": "Sablonok",
+  "templates.description": "Fedezd fel és telepítsd a Next.js projektek mintapéldányait."
+}

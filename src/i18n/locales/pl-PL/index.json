@@ -1,0 +1,10 @@
+{
+  "deploy": "Wdróż",
+  "deploy.description": "Natychmiast wdróż swoją stronę Next.js na publiczny adres URL za pomocą Vercel.",
+  "docs": "Dokumentacja",
+  "docs.description": "Znajdź szczegółowe informacje na temat funkcji i interfejsu API Next.js.",
+  "learn": "Naucz się",
+  "learn.description": "Naucz się o Next.js w interaktywnym kursie z quizami!",
+  "templates": "Szablony",
+  "templates.description": "Odkryj i wdróż przykładowe projekty szkieletowe Next.js."
+}

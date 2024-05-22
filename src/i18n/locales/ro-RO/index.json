@@ -1,0 +1,10 @@
+{
+  "deploy": "Implementează",
+  "deploy.description": "Implementează instant site-ul tău Next.js pe o adresă publică cu Vercel.",
+  "docs": "Documentație",
+  "docs.description": "Găsește informații detaliate despre caracteristicile și API-ul Next.js.",
+  "learn": "Învață",
+  "learn.description": "Învață despre Next.js într-un curs interactiv cu teste!",
+  "templates": "Șabloane",
+  "templates.description": "Descoperă și implementează proiecte exemplu de șablon Next.js."
+}
