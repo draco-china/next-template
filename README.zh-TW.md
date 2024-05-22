@@ -32,7 +32,7 @@
 [![][github-issues-shield]][github-issues-link]
 [![][github-license-shield]][github-license-link]
 
-![](https://urlscan.io/liveshot/?width=1920&height=2000&url=https://next-template-gules.vercel.app/zh-TW)
+![](https://urlscan.io/liveshot/?width=1920&height=1080&url=https://next-template-gules.vercel.app/zh-TW)
 
 </div>
 
