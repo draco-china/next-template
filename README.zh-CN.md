@@ -32,7 +32,7 @@
 [![][github-issues-shield]][github-issues-link]
 [![][github-license-shield]][github-license-link]
 
-![](https://github.com/othneildrew/Best-README-Template/raw/master/images/screenshot.png)
+![](https://urlscan.io/liveshot/?width=1920&height=2000&url=https://next-template-gules.vercel.app/zh-CN)
 
 </div>
 
