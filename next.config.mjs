@@ -1,8 +1,16 @@
 import nextPWA from 'next-pwa';
 
+const splitIndex = Object.keys(process.env).findIndex((key) => key === '__NEXT_PROCESSED_ENV');
+const env = Object.fromEntries(
+  Object.entries(process.env)
+    .slice(splitIndex + 1)
+    .map(([key, value]) => [key, value]),
+);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  env,
   images: {
     remotePatterns: [
       {
