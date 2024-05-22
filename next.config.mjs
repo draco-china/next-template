@@ -9,7 +9,6 @@ const env = Object.fromEntries(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   env,
   images: {
     remotePatterns: [
