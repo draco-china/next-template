@@ -1,0 +1,10 @@
+{
+  "deploy": "Julkaise",
+  "deploy.description": "Julkaise Next.js-sivustosi julkiseen URL-osoitteeseen välittömästi Vercelillä.",
+  "docs": "Dokumentaatio",
+  "docs.description": "Etsi syvällisempää tietoa Next.js:n ominaisuuksista ja ohjelmointirajapinnasta.",
+  "learn": "Opi",
+  "learn.description": "Opi Next.js:stä interaktiivisessa kurssissa, jossa on tietokilpailuja!",
+  "templates": "Mallit",
+  "templates.description": "Löydä ja julkaise esimerkkiprojekteja Next.js-käynnistykseen."
+}

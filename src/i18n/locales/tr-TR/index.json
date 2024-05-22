@@ -1,0 +1,10 @@
+{
+  "deploy": "Yayınla",
+  "deploy.description": "Vercel ile Next.js sitenizi hemen bir herkese açık URL'ye yayınlayın.",
+  "docs": "Belgeler",
+  "docs.description": "Next.js özellikleri ve API'leri hakkında ayrıntılı bilgi edinin.",
+  "learn": "Öğren",
+  "learn.description": "Next.js'yi sınavlarla dolu interaktif bir ders ile öğrenin!",
+  "templates": "Şablonlar",
+  "templates.description": "Örnek Next.js proje şablonlarını keşfedin ve yayınlayın."
+}

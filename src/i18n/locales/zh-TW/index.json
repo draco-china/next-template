@@ -1,0 +1,10 @@
+{
+  "deploy": "部署",
+  "deploy.description": "使用 Vercel 快速將您的 Next.js 網站部署至公開 URL。",
+  "docs": "文檔",
+  "docs.description": "查找關於 Next.js 功能和 API 的深入信息。",
+  "learn": "學習",
+  "learn.description": "通過有趣的課程和測驗來學習 Next.js!",
+  "templates": "模板",
+  "templates.description": "發現並部署 Next.js 樣板項目。"
+}

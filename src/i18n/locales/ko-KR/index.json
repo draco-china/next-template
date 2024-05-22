@@ -1,0 +1,10 @@
+{
+  "deploy": "배포하기",
+  "deploy.description": "Vercel을 사용하여 Next.js 사이트를 공개 URL에 즉시 배포하세요.",
+  "docs": "문서",
+  "docs.description": "Next.js 기능 및 API에 대한 자세한 정보를 찾아보세요.",
+  "learn": "배우기",
+  "learn.description": "퀴즈와 함께 인터랙티브 코스에서 Next.js에 대해 배워보세요!",
+  "templates": "템플릿",
+  "templates.description": "견본 Next.js 프로젝트의 보일러플레이트를 발견하고 배포하세요."
+}

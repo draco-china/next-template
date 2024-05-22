@@ -1,0 +1,10 @@
+{
+  "deploy": "Nasadit",
+  "deploy.description": "Okamžitě nasaďte svoji stránku Next.js na veřejnou URL pomocí Vercel.",
+  "docs": "Dokumentace",
+  "docs.description": "Najděte podrobné informace o funkcích a API Next.js.",
+  "learn": "Naučte se",
+  "learn.description": "Naučte se o Next.js v interaktivním kurzu s kvízy!",
+  "templates": "Šablony",
+  "templates.description": "Objevte a nasaďte výchozí příklady projektů Next.js."
+}

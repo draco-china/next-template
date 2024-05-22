@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Jogosulatlan",
+    "403": "Tiltott",
+    "404": "Nem található",
+    "500": "Belső szerverhiba",
+    "503": "A szolgáltatás nem érhető el",
+    "504": "Átjáró időtúllépés",
+    "default": "Ismeretlen hiba"
+  }
+}

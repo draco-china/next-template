@@ -1,0 +1,10 @@
+{
+  "deploy": "배포",
+  "deploy.description": "Instantly deploy your Next.js site to a public URL with Vercel.",
+  "docs": "เอกสาร",
+  "docs.description": "Find in-depth information about Next.js features and API.",
+  "learn": "เรียนรู้",
+  "learn.description": "Learn about Next.js in an interactive course with quizzes!",
+  "templates": "เทมเพลต",
+  "templates.description": "Discover and deploy boilerplate example Next.js projects."
+}

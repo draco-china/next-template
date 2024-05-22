@@ -1,0 +1,10 @@
+{
+  "deploy": "Distribuer",
+  "deploy.description": "Distribuer umiddelbart ditt Next.js-nettsted til en offentlig URL med Vercel.",
+  "docs": "Dokumentasjon",
+  "docs.description": "Finn dybdegående informasjon om Next.js-funksjoner og API.",
+  "learn": "Lær",
+  "learn.description": "Lær om Next.js i et interaktivt kurs med quizer!",
+  "templates": "Maler",
+  "templates.description": "Oppdage og distribuere eksempelprosjekter med Next.js-grunnlag."
+}

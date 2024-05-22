@@ -1,0 +1,10 @@
+{
+  "deploy": "デプロイ",
+  "deploy.description": "Next.jsサイトをVercelに即座にデプロイして公開URLを取得します。",
+  "docs": "ドキュメンテーション",
+  "docs.description": "Next.jsの機能やAPIの詳細情報を確認できます。",
+  "learn": "学習",
+  "learn.description": "クイズ付きのインタラクティブコースで Next.js について学習できます。",
+  "templates": "テンプレート",
+  "templates.description": "サンプルの Next.js プロジェクトを見つけてデプロイできます。"
+}

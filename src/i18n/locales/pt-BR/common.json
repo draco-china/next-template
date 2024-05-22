@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Não autorizado",
+    "403": "Proibido",
+    "404": "Não encontrado",
+    "500": "Erro interno do servidor",
+    "503": "Serviço indisponível",
+    "504": "Tempo limite do gateway",
+    "default": "Erro Desconhecido"
+  }
+}

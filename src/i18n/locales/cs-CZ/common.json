@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Neoprávněný přístup",
+    "403": "Zakázáno",
+    "404": "Nenalezeno",
+    "500": "Interní chyba serveru",
+    "503": "Služba nedostupná",
+    "504": "Časový limit brány vypršel",
+    "default": "Neznámá chyba"
+  }
+}

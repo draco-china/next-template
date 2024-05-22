@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Non autorisé",
+    "403": "Interdit",
+    "404": "Non trouvé",
+    "500": "Erreur interne du serveur",
+    "503": "Service indisponible",
+    "504": "Délai d'attente de la passerelle dépassé",
+    "default": "Erreur inconnue"
+  }
+}

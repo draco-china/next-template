@@ -1,0 +1,11 @@
+{
+  "request.error": {
+    "401": "Luvaton",
+    "403": "Kielletty",
+    "404": "Ei löytynyt",
+    "500": "Sisäinen palvelinvirhe",
+    "503": "Palvelu ei ole saatavilla",
+    "504": "Yhdyskäytävän aikakatkaisu",
+    "default": "Tuntematon virhe"
+  }
+}
