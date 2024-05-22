@@ -1,0 +1,132 @@
+name: Docker Deploy
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      SSH_PRIVATE_KEY:
+        description: 'SSH private key'
+        required: false
+      REMOTE_HOST:
+        description: 'Remote host to deploy to'
+        required: false
+      REMOTE_USER:
+        description: 'Remote user to deploy as'
+        required: false
+        default: 'root'
+      REMOTE_TARGET:
+        description: 'Remote target directory to deploy to'
+        required: false
+        default: '/var/www/html'
+  # push:
+  #   branches:
+  #     - main
+env:
+  # 私钥
+  SSH_PRIVATE_KEY: ${{ github.event.inputs.SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
+  # 远程主机
+  REMOTE_HOST: ${{ github.event.inputs.REMOTE_HOST || secrets.REMOTE_HOST }}
+  # 远程用户
+  REMOTE_USER: ${{ github.event.inputs.REMOTE_USER || secrets.REMOTE_USER }}
+  # 远程目录
+  REMOTE_TARGET: ${{ github.event.inputs.REMOTE_TARGET || secrets.REMOTE_TARGET }}
+  # 镜像名称
+  container: next-app
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: docker build --no-cache -f Dockerfile -t ${{ env.container }} .
+
+      - name: Save Docker Image
+        run: |
+          docker save -o ${{ env.container }}.tar ${{ env.container }}
+
+      - name: Transfer Docker Image to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete '
+          SOURCE: './${{ env.container }}.tar'
+          REMOTE_HOST: ${{ env.REMOTE_HOST }}
+          REMOTE_USER: ${{ env.REMOTE_USER }}
+          TARGET: ${{ env.REMOTE_TARGET }}
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+            # 创建远程目录
+            mkdir -p ${{ env.REMOTE_TARGET }}
+            # 是否已经安装 rsync
+            if ! command -v rsync &> /dev/null
+            then
+                # 根据系统安装 rsync
+                if command -v apt-get &> /dev/null
+                then
+                    apt-get update
+                    apt-get install -y rsync
+                elif command -v yum &> /dev/null
+                then
+                    yum install -y rsync
+                elif command -v apk &> /dev/null
+                then
+                    apk add rsync
+                fi
+            fi
+            # 是否已经安装 nginx
+            if ! command -v nginx &> /dev/null
+            then
+                # 安装 nginx
+                if command -v apt-get &> /dev/null
+                then
+                    apt-get update
+                    apt-get install -y nginx
+                elif command -v yum &> /dev/null
+                then
+                    yum install -y nginx
+                elif command -v apk &> /dev/null
+                then
+                    apk add nginx
+                fi
+            fi
+            # 是否已经安装 nginx-ui
+            if ! command -v nginx-ui &> /dev/null
+            then
+                bash <(curl -L -s https://mirror.ghproxy.com/https://raw.githubusercontent.com/0xJacky/nginx-ui/master/install.sh) install -r https://mirror.ghproxy.com/
+            fi
+            # 是否已经安装 docker
+            if ! command -v docker &> /dev/null
+            then
+                # 安装 docker
+                curl -fsSL https://get.docker.com -o get-docker.sh
+                yes|sh get-docker.sh
+            fi
+            # 是否已经安装 docker-compose
+            if ! command -v docker-compose &> /dev/null
+            then
+                # 安装 docker-compose
+                yes|curl -L "https://github.com/docker/compose/releases/download/2.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                chmod +x /usr/local/bin/docker-compose
+                ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+                docker-compose --version
+            fi
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            # 进入远程目录
+            cd ${{ env.REMOTE_TARGET }}
+            # 停止 docker 容器
+            docker stop ${{ env.container }} || true
+            # 移除历史容器
+            docker rm -f ${{ env.container }} || true
+            # 移除历史镜像
+            docker rmi -f ${{ env.container }} || true
+            # 导入镜像
+            docker load -i ${{ env.container }}.tar || true
+            # 启动 docker 容器
+            docker run -d -p 3000:3000 --name ${{ env.container }} ${{ env.container }}
+            # 删除
+            rm -f ${{ env.container }}.tar

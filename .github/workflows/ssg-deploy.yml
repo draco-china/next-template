@@ -1,0 +1,79 @@
+name: SSG Deploy
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      SSH_PRIVATE_KEY:
+        description: 'SSH private key'
+        required: false
+      REMOTE_HOST:
+        description: 'Remote host to deploy to'
+        required: false
+      REMOTE_USER:
+        description: 'Remote user to deploy as'
+        required: false
+        default: 'root'
+      REMOTE_TARGET:
+        description: 'Remote target directory to deploy to'
+        required: false
+        default: '/var/www/html'
+  # push:
+  #   branches:
+  #     - main
+env:
+  # 私钥
+  SSH_PRIVATE_KEY: ${{ github.event.inputs.SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
+  # 远程主机
+  REMOTE_HOST: ${{ github.event.inputs.REMOTE_HOST || secrets.REMOTE_HOST }}
+  # 远程用户
+  REMOTE_USER: ${{ github.event.inputs.REMOTE_USER || secrets.REMOTE_USER }}
+  # 远程目录
+  REMOTE_TARGET: ${{ github.event.inputs.REMOTE_TARGET || secrets.REMOTE_TARGET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm export
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete '
+          SOURCE: 'out/'
+          REMOTE_HOST: ${{ env.REMOTE_HOST }}
+          REMOTE_USER: ${{ env.REMOTE_USER }}
+          TARGET: ${{ env.REMOTE_TARGET }}
