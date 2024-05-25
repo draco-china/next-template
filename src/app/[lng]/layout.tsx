@@ -45,8 +45,10 @@ export default function RootLayout({
       </head>
       <body className={cn('w-screen overflow-x-hidden font-sans antialiased', fontSans.variable)}>
         <ReactQueryProvider>
-          <LayoutHeader />
-          <main className='relative min-h-[calc(100vh-65px-85px)]'>{children}</main>
+          <LayoutHeader lng={lng} />
+          <main className='relative min-h-[calc(100dvh-65px-138px-env(safe-area-inset-top))] lg:min-h-[calc(100dvh-65px-85px)]'>
+            {children}
+          </main>
           <LayoutFooter />
           <LayoutScroll />
           <Toaster closeButton richColors visibleToasts={9} />

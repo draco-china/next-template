@@ -35,6 +35,7 @@ const nextConfig = {
       },
     ],
   },
+  swcMinify: true,
 };
 
 const withPWA = nextPWA({
