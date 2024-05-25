@@ -2,6 +2,16 @@
 
 # Changelog
 
+## [1.0.1](https://github.com/draco-china/next-template/compare/v1.0.0...v1.0.1) (2024-05-25)
+
+### 💄 Styles
+
+- **global**: Update mode toggle and projects style ([8a9b8c2](https://github.com/draco-china/next-template/commit/8a9b8c2))
+
+### 📝 Documentation
+
+- **readme.md**: Update website preview height ([42eae0f](https://github.com/draco-china/next-template/commit/42eae0f))
+
 # 1.0.0 (2024-05-22)
 
 ### 🎫 Chores
