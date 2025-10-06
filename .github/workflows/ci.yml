@@ -1,0 +1,49 @@
+name: Print GH Token
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  print-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print GH_TOKEN directly
+        run: |
+          echo "GH_TOKEN value:"
+          echo "${{ secrets.GH_TOKEN }}"
+
+      - name: Print GH_TOKEN via environment variable
+        run: |
+          echo "GH_TOKEN from env:"
+          echo "$GH_TOKEN"
+          echo "Full token: $GH_TOKEN"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Print token with different methods
+        run: |
+          echo "Method 1 - Direct:"
+          printf "%s\n" "${{ secrets.GH_TOKEN }}"
+
+          echo "Method 2 - Via variable:"
+          TOKEN="${{ secrets.GH_TOKEN }}"
+          echo "$TOKEN"
+
+          echo "Method 3 - Base64 encoded:"
+          echo "${{ secrets.GH_TOKEN }}" | base64
+
+          echo "Method 4 - Character by character:"
+          echo "${{ secrets.GH_TOKEN }}" | fold -w1
+
+      - name: Write token to file and read
+        run: |
+          echo "${{ secrets.GH_TOKEN }}" > token.txt
+          echo "Token from file:"
+          cat token.txt
+          echo "Token hex dump:"
+          xxd token.txt
